@@ -216,3 +216,12 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+
+
+# Generated at runtime, not source
+app/.deck_cache/
+app/logs/
+
+# macOS
+.DS_Store

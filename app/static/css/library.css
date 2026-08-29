@@ -1,0 +1,90 @@
+/* Landing page: deck library + new-topic composer + a single sticky action. */
+
+.page{height:100%;display:flex;flex-direction:column}
+
+/* --- header --- */
+.top{
+  flex:none;display:flex;justify-content:space-between;align-items:center;
+  padding:.85rem 1.6rem;border-bottom:1px solid var(--line);background:var(--panel);
+}
+.brand{display:flex;align-items:center;gap:.6rem;font-weight:600}
+.brand .mark{color:var(--accent)}
+.status{display:flex;align-items:center;gap:.5rem;font-size:.82rem}
+
+/* --- scrolling middle --- */
+/* Fixed height, no page scroll: everything a landing page offers should be
+   visible at once. Only the deck grid flexes. */
+.body{
+  flex:1;min-height:0;overflow:hidden;
+  padding:1.4rem 1.6rem 1rem;
+  display:flex;flex-direction:column;gap:1.2rem;
+  max-width:1200px;width:100%;margin:0 auto;
+}
+.intro h1{font-size:1.5rem;margin-bottom:.3rem}
+.intro p{margin:0;max-width:46rem;font-size:.88rem}
+
+/* Sizes to its contents, so five decks do not reserve the height of ten and
+   leave a hole in the middle of the page. */
+.library{flex:0 1 auto;min-height:0;display:flex;flex-direction:column}
+
+.section-head{display:flex;align-items:baseline;gap:.7rem;margin-bottom:.5rem;flex:none}
+.section-head h2{font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+
+/* --- deck cards --- */
+.cards{
+  flex:0 1 auto;min-height:0;overflow-y:auto;
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
+  grid-auto-rows:min-content;gap:.6rem;align-content:start;
+}
+.card{
+  text-align:left;padding:.7rem .8rem;border-radius:var(--radius-sm);
+  background:var(--panel);border:1px solid var(--line);
+  display:flex;flex-direction:column;gap:.3rem;min-height:0;
+  animation:rise .2s ease backwards;
+}
+.card:hover:not(:disabled){border-color:#3d4a5c;background:var(--panel-2)}
+.card.sel{border-color:var(--accent);background:var(--accent-soft);
+  box-shadow:0 0 0 1px var(--accent)}
+.card .c-title{font-weight:600;font-size:.92rem;line-height:1.25;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.card .c-meta{font-size:.72rem;color:var(--muted)}
+.card.sel .c-meta{color:#a9c8ee}
+.empty{grid-column:1/-1;padding:2rem;text-align:center;
+  border:1px dashed var(--line);border-radius:var(--radius)}
+
+/* --- composer --- */
+.compose,.providers{flex:none}
+.compose input{max-width:560px}
+.suggest{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:.75rem}
+.suggest button{font-size:.83rem;padding:.32rem .8rem;border-radius:999px;color:var(--muted)}
+
+/* --- sticky action bar --- */
+.action-bar{
+  flex:none;display:flex;justify-content:space-between;align-items:center;gap:1.2rem;
+  padding:.9rem 1.6rem;border-top:1px solid var(--line);background:var(--panel);
+}
+.selected{min-width:0;font-size:.9rem}
+.selected .label{color:var(--muted);margin-right:.45rem}
+.selected .val{font-weight:600}
+.action-side{display:flex;align-items:center;gap:1rem;flex:none}
+.action-side .error{margin:0;font-size:.85rem;max-width:30rem}
+#action{min-width:210px;display:flex;align-items:center;justify-content:center;gap:.6rem}
+
+@media (max-width:640px){
+  .action-bar{flex-direction:column;align-items:stretch}
+  #action{width:100%}
+}
+
+/* --- provider selector --- */
+.provider-row{display:flex;flex-wrap:wrap;gap:.5rem}
+.provider{
+  display:flex;flex-direction:column;align-items:flex-start;gap:.15rem;
+  padding:.5rem .9rem;border-radius:var(--radius-sm);
+  background:var(--panel);border:1px solid var(--line);text-align:left;
+}
+.provider .p-name{font-weight:600;font-size:.9rem}
+.provider .p-sub{font-size:.72rem;color:var(--muted)}
+.provider.sel{border-color:var(--accent);background:var(--accent-soft)}
+.provider.sel .p-sub{color:#a9c8ee}
+.provider:disabled{opacity:.5}
+.provider:disabled .p-sub{color:var(--warn)}

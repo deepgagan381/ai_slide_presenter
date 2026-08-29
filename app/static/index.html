@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Slide Presenter</title>
+<link rel="stylesheet" href="/static/css/base.css">
+<link rel="stylesheet" href="/static/css/library.css">
+</head>
+<body>
+
+<div class="page">
+
+  <header class="top">
+    <div class="brand">
+      <span class="mark">◆</span>
+      <span>AI Slide Presenter</span>
+    </div>
+    <div class="status" id="health">
+      <span class="dot" id="health-dot"></span>
+      <span id="health-text" class="muted">checking…</span>
+    </div>
+  </header>
+
+  <main class="body">
+
+    <section class="intro">
+      <h1>Pick a deck, or start a new one</h1>
+      <p class="muted">Every deck is written by a local model, then presented out loud.
+         Ask a question during the talk and it jumps to the slide that answers it.</p>
+    </section>
+
+    <section class="library">
+      <div class="section-head">
+        <h2>Your decks</h2>
+        <span class="muted" id="deck-count"></span>
+      </div>
+
+      <div class="cards" id="cards">
+        <div class="empty muted" id="empty" hidden>
+          No decks yet — type a topic below to make your first one.
+        </div>
+      </div>
+    </section>
+
+    <section class="providers">
+      <div class="section-head"><h2>Model</h2></div>
+      <div class="provider-row" id="providers"></div>
+    </section>
+
+    <section class="compose">
+      <div class="section-head"><h2>New topic</h2></div>
+      <input id="topic" type="text" autocomplete="off"
+             placeholder="e.g. How solar storms affect the power grid">
+      <div class="suggest" id="suggest"></div>
+    </section>
+
+  </main>
+
+  <footer class="action-bar">
+    <div class="selected" id="selected">
+      <span class="muted">Nothing selected</span>
+    </div>
+    <div class="action-side">
+      <p class="error" id="error" hidden></p>
+      <button id="regen" class="ghost" hidden>↻  Regenerate</button>
+      <button id="action" class="primary" disabled>Select a topic</button>
+    </div>
+  </footer>
+
+</div>
+
+<script src="/static/js/api.js"></script>
+<script src="/static/js/library.js"></script>
+</body>
+</html>

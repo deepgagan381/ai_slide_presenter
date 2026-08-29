@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Presenting — AI Slide Presenter</title>
+  <link rel="stylesheet" href="/static/css/base.css">
+  <link rel="stylesheet" href="/static/css/present.css">
+</head>
+
+<body>
+
+  <div class="page" id="page" hidden>
+
+    <header class="top">
+      <div class="top-left">
+        <a class="back" href="/">‹ Library</a>
+        <span class="divider"></span>
+        <span class="deck-title" id="deck-title"></span>
+      </div>
+      <div class="top-right">
+        <button id="mic" class="mic-chip" title="Click to mute">
+          <span class="mic-dot"></span><span id="mic-label">starting mic…</span>
+          <span class="meter"><i id="meter-fill"></i></span>
+        </button>
+        <span class="counter"><b id="slide-n">1</b> / <span id="slide-total">6</span></span>
+        <span class="badge idle" id="badge">IDLE</span>
+      </div>
+    </header>
+
+    <main class="body">
+
+      <section class="stage">
+        <article class="slide" id="slide">
+          <h2 id="slide-title"></h2>
+          <ul id="slide-bullets"></ul>
+        </article>
+
+        <div class="toast" id="toast" hidden></div>
+
+        <nav class="dots" id="dots"></nav>
+
+        <div class="controls">
+          <button id="start" class="primary">▶ Start presenting</button>
+          <button id="prev" class="ghost">‹</button>
+          <button id="next" class="ghost">›</button>
+          <button id="stop" class="ghost danger">■ Interrupt</button>
+          <button id="cache" class="ghost cache on" title="Replay stored audio instead of re-synthesising">
+            ♻︎ Cached audio: on
+          </button>
+        </div>
+
+        <form class="ask" id="ask-form">
+          <input id="ask" type="text" autocomplete="off"
+            placeholder="Ask a question — it will jump to the slide that answers it">
+          <button type="submit" id="ask-btn">Ask</button>
+        </form>
+      </section>
+
+      <aside class="side">
+        <h3>Transcript</h3>
+        <div class="transcript" id="transcript"></div>
+      </aside>
+
+    </main>
+  </div>
+
+  <div class="loading" id="loading">
+    <div class="spinner"></div>
+    <p class="muted" id="loading-text">Loading deck…</p>
+    <p class="error" id="loading-error" hidden></p>
+    <a href="/" class="back" id="loading-back" hidden>‹ Back to library</a>
+  </div>
+
+  <script src="/static/js/api.js"></script>
+  <script src="/static/js/audio.js"></script>
+  <script src="/static/js/present.js"></script>
+</body>
+
+</html>
